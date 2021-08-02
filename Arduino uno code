@@ -1,0 +1,30 @@
+const int motorpin =7;
+const int sensorpin1=3;
+const int sensorpin2=4;
+const int sensorpin3=5;
+void setup() 
+{
+ Serial.begin(115200); /* Define baud rate for serial 
+communication */
+ pinMode(sensorpin1,INPUT);
+ pinMode(sensorpin2,INPUT);
+ pinMode(sensorpin3,INPUT);
+ pinMode(motorpin,OUTPUT);
+}
+void loop() 
+{
+ float mois1,mois2,mois3;
+ mois1 =digitalRead(sensorpin1);
+ mois2 =digitalRead(sensorpin2);
+ mois3 =digitalRead(sensorpin3);
+ Serial.print("Soil Moisture = ");
+ Serial.print(mois1 );
+ Serial.print(mois2 );
+ Serial.println(mois3 );
+ //Serial.println("%");
+ delay(1000);
+ if( (mois1)||(mois2)||(mois3))
+ digitalWrite(motorpin,LOW);
+ else
+ digitalWrite(motorpin, HIGH);
+}
